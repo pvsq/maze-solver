@@ -42,3 +42,15 @@ class Cell:
                     "black"
             )
 
+
+    def draw_move(self, to_cell, undo=False):
+        mid_x_self = self._x1 + (1/2) * (abs(self._x2 - self._x1))
+        mid_y_self = self._y1 + (1/2) * (abs(self._y2 - self._y1))
+        mid_x_to = to_cell._x1 + (1/2) * (abs(to_cell._x2 - to_cell._x1))
+        mid_y_to = to_cell._y1 + (1/2) * (abs(to_cell._y2 - to_cell._y1))
+        l = Line(Point(mid_x_self, mid_y_self), Point(mid_x_to, mid_y_to))
+        fill_color = "red"
+        if undo:
+            fill_color = "gray"
+        self._win.draw_line(l, fill_color)
+
