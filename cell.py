@@ -29,20 +29,40 @@ class Cell:
                 Line(Point(self._x1, self._y1), Point(self._x1, self._y2)),
                     "black"
             )
+        else:
+            self._win.draw_line(
+                Line(Point(self._x1, self._y1), Point(self._x1, self._y2)),
+                    "white"
+            )
         if self.has_right_wall:
             self._win.draw_line(
                 Line(Point(self._x2, self._y1), Point(self._x2, self._y2)),
                     "black"
+            )
+        else:
+            self._win.draw_line(
+                Line(Point(self._x2, self._y1), Point(self._x2, self._y2)),
+                    "white"
             )
         if self.has_top_wall:
             self._win.draw_line(
                 Line(Point(self._x1, self._y1), Point(self._x2, self._y1)),
                     "black"
             )
+        else:
+            self._win.draw_line(
+                Line(Point(self._x1, self._y1), Point(self._x2, self._y1)),
+                    "white"
+            )
         if self.has_bottom_wall:
             self._win.draw_line(
                 Line(Point(self._x1, self._y2), Point(self._x2, self._y2)),
                     "black"
+            )
+        else:
+            self._win.draw_line(
+                Line(Point(self._x1, self._y2), Point(self._x2, self._y2)),
+                    "white"
             )
 
 
