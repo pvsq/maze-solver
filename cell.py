@@ -5,7 +5,8 @@ from point import Point
 class Cell:
     def __init__(
         self, 
-        x1, x2, y1, y2, win,
+        x1, x2, y1, y2,
+        win=None,
         has_left_wall=True, has_right_wall=True,
         has_top_wall=True, has_bottom_wall=True
     ):
@@ -21,6 +22,8 @@ class Cell:
 
 
     def draw(self):
+        if self._win is None:
+            return
         if self.has_left_wall:
             self._win.draw_line(
                 Line(Point(self._x1, self._y1), Point(self._x1, self._y2)),
@@ -52,5 +55,7 @@ class Cell:
         fill_color = "red"
         if undo:
             fill_color = "gray"
+        if self._win is None:
+            return
         self._win.draw_line(l, fill_color)
 
