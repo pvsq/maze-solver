@@ -43,5 +43,26 @@ class Tests(unittest.TestCase):
         )
 
 
+    def test_maze_removed_top_wall_on_first_cell(self):
+        num_cols = 8
+        num_rows = 6
+        m1 = Maze(50, 50, num_rows, num_cols, 75, 75)
+        self.assertEqual(
+            m1._cells[0][0].has_top_wall,
+            False,
+        )
+
+
+    def test_maze_removed_bottom_wall_on_last_cell(self):
+        num_cols = 8
+        num_rows = 6
+        m1 = Maze(50, 50, num_rows, num_cols, 75, 75)
+        self.assertEqual(
+            m1._cells[m1.num_cols-1][m1.num_rows-1].has_bottom_wall,
+            False,
+        )
+
+
+
 if __name__ == "__main__":
     unittest.main()
