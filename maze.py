@@ -30,6 +30,57 @@ class Maze:
         self._create_cells()
 
 
+    def solve(self):
+        self._solve_r(0, 0)
+
+
+    def _solve_r(self, i, j):
+        self._animate()
+        currentc = self._cells[i][j]
+        currentc.visited = True
+
+        if i==self.num_cols-1 and j==self.num_rows-1:
+            return True
+
+        if not currentc.has_right_wall:
+            if i+1 <= self.num_cols-1:
+                nextc = self._cells[i+1][j]
+                if not nextc.visited:
+                    currentc.draw_move(nextc)
+                    if self._solve_r(i+1, j):
+                        return True
+                    currentc.draw_move(nextc, undo=True)
+
+        if not currentc.has_bottom_wall:
+            if j+1 <= self.num_rows-1:
+                nextc = self._cells[i][j+1]
+                if not nextc.visited:
+                    currentc.draw_move(nextc)
+                    if self._solve_r(i, j+1):
+                        return True
+                    currentc.draw_move(nextc, undo=True)
+
+        if not currentc.has_left_wall:
+            if i-1 >= 0:
+                nextc = self._cells[i-1][j]
+                if not nextc.visited:
+                    currentc.draw_move(nextc)
+                    if self._solve_r(i-1, j):
+                        return True
+                    currentc.draw_move(nextc, undo=True)
+
+        if not currentc.has_top_wall:
+            if j-1 >= 0:
+                nextc = self._cells[i][j-1]
+                if not nextc.visited:
+                    currentc.draw_move(nextc)
+                    if self._solve_r(i, j-1):
+                        return True
+                    currentc.draw_move(nextc, undo=True)
+
+        return False
+
+
     def _create_cells(self):
         self._cells = []
         for i in range(self.num_cols):
