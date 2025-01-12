@@ -27,10 +27,12 @@ class Maze:
         else:
             self.seed = random.seed()
 
+        self.animate_speed = 0.001
         self._create_cells()
 
 
     def solve(self):
+        self.animate_speed = 0.05
         self._solve_r(0, 0)
 
 
@@ -169,5 +171,5 @@ class Maze:
         if self.win is None:
             return
         self.win.redraw()
-        time.sleep(0.05)
+        time.sleep(self.animate_speed)
 
